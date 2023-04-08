@@ -6,9 +6,9 @@ import { Timer } from './components/timer/Timer';
 function App() {
   return (
     <div className="App">
-      {/* <Movies /> */}
+      <Movies />
       {/* <Timer /> */}
-      <Counter />
+      {/* <Counter /> */}
     </div>
   );
 }
