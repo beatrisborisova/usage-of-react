@@ -2,6 +2,7 @@ import './App.css';
 import { Counter } from './components/counter/Counter';
 import { Movies } from './components/movies/Movies';
 import { Timer } from './components/timer/Timer';
+import { Todos } from './components/todos/Todos';
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <Movies />
       {/* <Timer /> */}
       {/* <Counter /> */}
+      {<Todos />}
     </div>
   );
 }

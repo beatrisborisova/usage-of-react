@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { Fragment, useEffect, useState } from "react"
 
 export function Movie(props: any) {
 
@@ -17,10 +17,14 @@ export function Movie(props: any) {
     }, [])
 
     useEffect(() => {
+        console.log('Updating');
+    }, [marked])
+
+    useEffect(() => {
         return () => {
             console.log('Unmounting');
         }
-    }, [marked])
+    }, [isDeleted])
 
     const markMovie = () => {
         setMarked(marked => !marked)
@@ -31,7 +35,7 @@ export function Movie(props: any) {
     }
 
     return (
-        <div>
+        <Fragment>
             {!isDeleted &&
                 <div onClick={markMovie} style={marked ? { backgroundColor: 'red' } : { backgroundColor: '' }}>
                     <h2>{title}</h2>
@@ -42,6 +46,6 @@ export function Movie(props: any) {
                     <button onClick={markMovieAsDeleted}>Mark as Deleted</button>
                 </div>
             }
-        </div>
+        </Fragment>
     )
 }
