@@ -6,17 +6,17 @@ import { Todo as TodoInterface } from "../../interfaces/todo";
 
 export function Todos() {
 
-    // const [todos, setTodos] = useState([])
+    const [todos, setTodos] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
-    const todos = useLoaderData()
+    // const todos = useLoaderData()
     const error = useRouteError()
 
-    // useEffect(() => {
-    //     todosService.getAllTodos()
-    //         .then(result => setTodos(result))
-    //         .finally(() => setIsLoading(false))
-    // }, [])
+    useEffect(() => {
+        todosService.getAllTodos()
+            .then(result => setTodos(result))
+            .finally(() => setIsLoading(false))
+    }, [])
 
     return (
         <>
@@ -29,6 +29,6 @@ export function Todos() {
     )
 }
 
-export const loadTodos = () => {
-    return todosService.getAllTodos()
-}
+// export const loadTodos = () => {
+//     return todosService.getAllTodos()
+// }
