@@ -12,6 +12,7 @@ import { createBrowserRouter, createRoutesFromElements, RouterProvider } from 'r
 import { Root } from './components/Root';
 import { Login } from './components/login/Login';
 import { Register } from './components/register/Register';
+import { MovieDetails } from './components/movie-details/MovieDetails';
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
       path: '/', element: < Root />, children: [
         { index: true, element: <Home /> },
         { path: '/movies', element: <Movies /> },
+        { path: '/movies/:id', element: <MovieDetails /> },
         { path: '/todos', element: <Todos /> },
         { path: '/login', element: <Login /> },
         { path: '/register', element: <Register /> },
