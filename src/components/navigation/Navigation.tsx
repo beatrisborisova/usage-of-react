@@ -11,6 +11,7 @@ export function Navigation() {
             <Link to='/movies'>Movies</Link>
             <Link to='/todos'>Todos</Link>
             <Link to='/login'>Login</Link>
+            <Link to='/register'>Register</Link>
         </nav>
     )
 }
