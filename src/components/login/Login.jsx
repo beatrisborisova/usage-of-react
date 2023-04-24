@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/authContext';
 
 export function Login() {
 
@@ -7,17 +8,19 @@ export function Login() {
     const navigate = useNavigate();
     const [usernameError, setUsernameError] = useState('');
     const [passwordError, setPasswordError] = useState('');
-    const [hasUser, setHasUser] = useState(false);
+    // const [hasUser, setHasUser] = useState(false);
 
-    useEffect(() => {
-        if (hasUser) {
-            navigate('/', {
-                state: hasUser
-            })
-        }
-    }, [hasUser])
+    const { hasUser, setHasUser } = useContext(AuthContext);
 
-    const onLogin = (e: any) => {
+    // useEffect(() => {
+    //     if (hasUser) {
+    //         navigate('/', {
+    //             state: hasUser
+    //         })
+    //     }
+    // }, [hasUser])
+
+    const onLogin = (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
 
@@ -41,8 +44,15 @@ export function Login() {
 
         setHasUser(true)
         e.target.reset()
+
+        sessionStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dnZWRJbkFzIjoiYWRtaW4iLCJpYXQiOjE0MjI3Nzk2Mzh9.gzSraSYS8EXBxLN_oWnFSRgCzcmJmMjLiuyu5CSpyHI')
+        sessionStorage.setItem('username', username)
+
+        localStorage.setItem('accessToken', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dnZWRJbkFzIjoiYWRtaW4iLCJpYXQiOjE0MjI3Nzk2Mzh9.gzSraSYS8EXBxLN_oWnFSRgCzcmJmMjLiuyu5CSpyHI')
     }
 
+
+    console.log(hasUser);
 
 
 

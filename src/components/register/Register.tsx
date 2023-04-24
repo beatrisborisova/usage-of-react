@@ -45,7 +45,7 @@ export function Register() {
     
 
     const validateField = (e: any) => {
-        
+
         if (e.target.name === 'username') {
             if (e.target.value.length < 3) {
                 setRegisterFormErrors(oldState => ({ ...oldState, [e.target.name]: { minlength: true, specialCharacters: false } }))
