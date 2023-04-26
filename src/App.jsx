@@ -16,6 +16,15 @@ import { MovieDetails } from './components/movie-details/MovieDetails';
 import { AuthContext } from './contexts/authContext';
 import { useState } from 'react';
 import { Profile } from './components/profile/Profile';
+import { configureStore } from '@reduxjs/toolkit';
+import authReducer from './redux/auth';
+import { Provider } from 'react-redux';
+
+const store = configureStore({
+  reducer: {
+    auth: authReducer
+  }
+})
 
 function App() {
 
@@ -37,11 +46,13 @@ function App() {
   )
 
   return (
-    <AuthContext.Provider value={{ hasUser, setHasUser }}>
-      <div className="App">
-        <RouterProvider router={browserRouter} />
-      </div>
-    </AuthContext.Provider>
+    <Provider store={store}>
+      <AuthContext.Provider value={{ hasUser, setHasUser }}>
+        <div className="App">
+          <RouterProvider router={browserRouter} />
+        </div>
+      </AuthContext.Provider>
+    </Provider>
   );
 }
 

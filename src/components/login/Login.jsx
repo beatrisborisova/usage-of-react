@@ -1,6 +1,8 @@
 import { useContext, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/authContext';
+import { setHasUser as setHasUserReducer } from '../../redux/auth';
 
 export function Login() {
 
@@ -11,7 +13,9 @@ export function Login() {
     // const [hasUser, setHasUser] = useState(false);
 
     const { hasUser, setHasUser } = useContext(AuthContext);
-
+    const dispatch = useDispatch();
+    const authState = useSelector(states => states.auth.value.payload)
+    console.log('authState', authState);
     // useEffect(() => {
     //     if (hasUser) {
     //         navigate('/', {
@@ -20,7 +24,7 @@ export function Login() {
     //     }
     // }, [hasUser])
 
-    const onLogin = (e) => {
+    const onLogin = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
 
@@ -49,12 +53,8 @@ export function Login() {
         sessionStorage.setItem('username', username)
 
         localStorage.setItem('accessToken', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dnZWRJbkFzIjoiYWRtaW4iLCJpYXQiOjE0MjI3Nzk2Mzh9.gzSraSYS8EXBxLN_oWnFSRgCzcmJmMjLiuyu5CSpyHI')
+        dispatch(setHasUserReducer({ payload: { hasUser: true }, type: 'SET HAS USER' }))
     }
-
-
-    console.log(hasUser);
-
-
 
     return (
         <>
