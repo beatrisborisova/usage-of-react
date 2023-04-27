@@ -20,17 +20,25 @@ export function Todos() {
             .finally(() => setIsLoading(false))
     }, [])
 
+    console.log(location.state);
+
+
     return (
         <>
             <h1>Todos here</h1>
             {/* {isLoading && <p>Loading...</p>} */}
             {/* {!isLoading && todos.length > 0 && todos.map(el => <Todo todo={el} key={el['id']} />)} */}
 
-            {location.state && location.state.map(el => <Todo todo={el} key={el['id']} />)}
+            {location.state && location.state.map((el: {
+                userId: number,
+                id: number,
+                title: string,
+                completed: boolean
+            }) => <Todo todo={el} key={el['id']} />)}
 
 
             {!location.state && todos.length > 0 && todos.map(el => <Todo todo={el} key={el['id']} />)}
-            {error && <p>{error.message}</p>}
+            {(error as Error)?.message && <p>{(error as Error)?.message}</p>}
         </>
     )
 }

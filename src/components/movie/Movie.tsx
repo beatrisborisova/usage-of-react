@@ -1,7 +1,8 @@
 import { Fragment, useEffect, useState } from "react"
 import { useNavigate } from 'react-router-dom'
+import { Movie as MovieInterface } from "../../interfaces/movie"
 
-export function Movie(props: any) {
+export function Movie(props: { movie: MovieInterface }) {
 
     const { id, title, year, genre, plot, poster } = props.movie
 

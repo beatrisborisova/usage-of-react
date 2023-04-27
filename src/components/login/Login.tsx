@@ -1,7 +1,8 @@
-import { useContext, useEffect, useState } from 'react';
+import { FormEvent, useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/authContext';
+import { RootState } from '../../interfaces/auth';
 import { setHasUser as setHasUserReducer } from '../../redux/auth';
 
 export function Login() {
@@ -14,7 +15,7 @@ export function Login() {
 
     const { hasUser, setHasUser } = useContext(AuthContext);
     const dispatch = useDispatch();
-    const authState = useSelector(states => states.auth.value.payload)
+    const authState = useSelector((states: RootState) => states.auth.value.payload)
     console.log('authState', authState);
     // useEffect(() => {
     //     if (hasUser) {
@@ -24,9 +25,9 @@ export function Login() {
     //     }
     // }, [hasUser])
 
-    const onLogin = async (e) => {
+    const onLogin = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const formData = new FormData(e.target);
+        const formData = new FormData(e.currentTarget);
 
         const username = String(formData.get('username'));
         const password = String(formData.get('password'));
@@ -47,7 +48,7 @@ export function Login() {
         }
 
         setHasUser(true)
-        e.target.reset()
+        e.currentTarget.reset()
 
         sessionStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dnZWRJbkFzIjoiYWRtaW4iLCJpYXQiOjE0MjI3Nzk2Mzh9.gzSraSYS8EXBxLN_oWnFSRgCzcmJmMjLiuyu5CSpyHI')
         sessionStorage.setItem('username', username)

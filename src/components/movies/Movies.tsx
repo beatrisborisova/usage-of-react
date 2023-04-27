@@ -7,7 +7,14 @@ import { Movie as MovieItem } from "../movie/Movie"
 
 export function Movies() {
 
-    const [data, setData] = useState()
+    const [data, setData] = useState([{
+        id: 0,
+        title: '',
+        year: 0,
+        genre: '',
+        plot: '',
+        poster: ''
+    }])
     const [isLoading, setIsLoading] = useState(true)
 
     const { hasUser } = useContext(AuthContext);
